@@ -1,0 +1,343 @@
+@mixin but($bgColorBeg, $bgColorDw) {
+    background-color: $bgColorBeg;
+    padding: 10px 30px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    margin-right: 15px;
+
+    @content;
+
+    &:active{
+        background: linear-gradient(180deg,$bgColorBeg, $bgColorDw);
+    }
+}
+
+@mixin links{
+    align-self: center;
+    color: #fff;
+    text-align: justify;
+}
+
+@mixin text{
+    color: $sectionColor;
+    font-family: 'Hind', sans-serif;
+    font-size: 12px;
+    padding: 0 30px;
+
+    @content;
+}
+
+$sizes:(
+
+    'width1': 210px,
+    'height1': 35px,
+    'left1': 0,
+    'top1': 80px,
+
+    'width2': 165px,
+    'height2': 35px,
+    'left2': 682px,
+    'top2': 25px,
+
+    'width3': 43px,
+    'height3': 30px,
+    'left3': 141px,
+    'top3': 15px,
+
+);
+
+
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: $fontFamily;
+    font-size: 14px;
+    background: $majorColor;
+}
+
+
+
+
+
+
+.header{ 
+    background-image: $headerImage;
+    border-radius: 0 0 30% 0;
+    max-width: 1920px;
+    background-size: 100%;
+    background-position-y: center;
+    background-position-x: left;
+
+    .header-wrap{
+        width: 85%;
+        margin: 0 auto;
+        padding: 20px 0;
+    
+        .landing-logo{
+            display: flex;
+            flex-direction: row;
+            color: $title;
+        
+            p{
+                flex-direction: column;
+                padding-left: 15px;
+                font-weight: 600;
+                font-size: 18px;
+                text-align: center;
+    
+                span{
+                    display: block;
+                    font-weight: normal;
+                    font-size: 8px;    
+                }
+            }
+        }
+    
+        .header_heading{
+            width: 30%;
+            font-size: 50px;
+            font-weight: bold;
+            margin: 50px 0;
+            color: $title;
+            position: relative;
+            z-index: 1;
+            font-family: 'Source Sans Pro', sans-serif;
+    
+    
+            &:after{
+                content: "";
+                display: block;
+                position: absolute;
+                z-index: -1;
+                background-color: $specialColor;
+                width: map-get($sizes, width1);
+                height: map-get($sizes, height1);
+                left: map-get($sizes, left1);
+                top: map-get($sizes, top1);
+            }
+        }
+    
+        .header_text{
+            width: 50%;
+            text-align: left;
+            white-space: pre-line;
+            line-height: 1.5;
+            color: $title;
+            margin-bottom: 35px;
+        }
+        div:not(.landing-logo){
+            width: 30%;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 50px;
+    
+    
+            >.header_button{
+                @include but(#E3AC00, #B28600);     
+            }
+            >a{
+                @include links;
+            }
+        }
+    }
+}
+
+
+
+
+
+.section{
+    text-align: center;
+    position: relative;
+
+
+    .section_text{
+        position: relative;
+        font-size: 33px;
+        font-weight: 600;
+        padding: 25px 0;
+        letter-spacing: 2px;
+        display: block;
+        color: $title;
+        font-family: 'Source Sans Pro', sans-serif;
+
+        &:after{
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: $specialColor;
+            z-index: -1;
+            width: map-get($sizes, width2);
+            height: map-get($sizes, height2);
+            left: map-get($sizes, left2);
+            top: map-get($sizes, top2);
+        }
+    }
+
+    .section_card_wrap{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .section_card{
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            width: 50%;
+            background: $footerColor;
+            padding: 10px;
+            margin-top: 15px;
+        
+            .section_card_img{
+                border-radius: 5px;
+            }
+        
+            .section_card_right_container{
+                padding: 20px 30px; 
+        
+                .section_card_heading{
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #fff;
+                    margin-bottom: 20px;
+                }
+        
+                .section_card_text{
+                    @include text;
+        
+                    text-align: justify;
+                }
+        
+                a{
+                    @include links;
+                    @include text;
+                }
+            }
+        }        
+    }
+    .section_banner{
+        position: absolute;
+        bottom: -145px;
+        left: 300px;
+        border-radius: 5px;
+        padding: 20px 30px;
+        margin: 50px auto 0 auto;
+        background: linear-gradient( 45deg, $gradientMin, $gradientMax);
+        width: 55%;
+        min-width: 35%;
+        overflow: hidden;
+        text-align: right;
+        color: $title;
+        z-index: 1;
+    
+        
+        &:after{
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: $specialColor;
+            z-index: -1;
+            width: map-get($sizes, width3);
+            height: map-get($sizes, height3);
+            left: map-get($sizes, left3);
+            top: map-get($sizes, top3);
+        }
+    
+        .section_banner_text_wrap{
+            display: inline-block;
+            float: left;
+            text-align: left;
+            margin-left: 30px;
+            font-family: 'Source Sans Pro', sans-serif;
+    
+            &::after{
+                content: '';
+                clear: both;
+                visibility: hidden;
+                display: block;
+                height: 0;
+            }
+    
+            .section_banner_heading{
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+        
+            .section_banner_text{
+                @include text;
+    
+                padding-left: 0;
+                
+            }
+        }
+        
+        .section_banner_button{
+            @include but(#E3AC00, #B28600);
+            margin: 10px 30px 0 0;
+        }
+    }
+}
+
+
+
+
+
+
+.footer{
+    max-width: 1920px;
+    padding: 50px 0;
+    background: $footerColor;
+    color: #fff;
+    margin-top: 100px;
+
+        .footer-wrap{
+        padding-top: 30px;
+        width: 75%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+            .landing-logo{
+                display: flex;
+                flex-direction: row;
+                color: #9D9D9D;
+    
+                p{
+                    flex-direction: column;
+                    padding-left: 15px;
+                    font-weight: 600;
+                    font-size: 18px;
+                    text-align: center;
+    
+                    span{
+                        display: block;
+                        font-weight: normal;
+                        font-size: 8px;    
+                    }
+                }
+            }
+
+        .footer_text{
+            @include text;
+            font-size: 11px;
+            width: 27%;
+        }
+
+        .footer-cr{
+        @extend .footer_text;
+        }
+    }
+}
+
